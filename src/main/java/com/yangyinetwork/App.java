@@ -1,11 +1,10 @@
 package com.yangyinetwork;
 
-import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 
 public class App {
@@ -15,28 +14,16 @@ public class App {
     }
 
     private static void openSocket() {
+        final Executor executor = Executors.newFixedThreadPool(10);
         try {
-            ServerSocket serverSocket = new ServerSocket(8080);
+            final ServerSocket serverSocket = new ServerSocket(8080);
 
-            Socket accepted = serverSocket.accept();
-            acceptInputStream(accepted.getInputStream());
-            accepted.getOutputStream();
+            while (true) {
+                Socket accepted = serverSocket.accept();
+                executor.execute(RequestHandlingRunnableFactory.createWith(accepted));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private static void acceptInputStream(InputStream inputStream) {
-//        while (true) {
-        try {
-            byte[] buff = new byte[100];
-
-            int read = inputStream.read(buff);
-            System.out.printf("read: %d %n", read);
-            System.out.println(new String(buff));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        }
     }
 }
