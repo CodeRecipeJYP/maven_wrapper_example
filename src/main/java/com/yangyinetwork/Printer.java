@@ -8,6 +8,7 @@ public class Printer {
     private static PrintStream sOut = System.out;
 
     public static void print(InputStream inputStream) {
+        Printer.println("print");
         byte[] buffer = new byte[1024 * 8];
 
         try {
@@ -23,5 +24,9 @@ public class Printer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void println(String s) {
+        sOut.println(s);
     }
 }

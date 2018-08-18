@@ -22,7 +22,9 @@ public class RequestHandler {
     }
 
     public void handleRequest(Socket socket) {
+        Printer.println("handleRequest");
         connectWithPrinter(socket);
+        Printer.println("handledRequest");
     }
 
     private void connectWithPrinter(Socket socket) {
