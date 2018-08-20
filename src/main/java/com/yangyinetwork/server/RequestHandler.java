@@ -41,9 +41,9 @@ public class RequestHandler {
 
         try {
             String parsed = Parser.parseFrom(socket.getInputStream());
-            Printer.printf("parsed: %s\n", parsed);
+            Printer.printf("[parsed]: \n[%s]\n", parsed);
             String response = mResponser.onReceive(parsed);
-            Printer.printf("response: %s\n", response);
+            Printer.printf("[response]: \n[%s]\n", response);
             Sender.send(response, socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
