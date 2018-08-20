@@ -1,4 +1,6 @@
-package com.yangyinetwork;
+package com.yangyinetwork.server;
+
+import com.yangyinetwork.server.io.Printer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,6 +19,7 @@ public class SocketManager {
     public void open() {
         try {
             final ServerSocket serverSocket = new ServerSocket(mPort);
+            Printer.printf("Listening %d port\n", mPort);
 
             while (true) {
                 Socket accepted = serverSocket.accept();

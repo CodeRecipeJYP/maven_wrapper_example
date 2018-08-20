@@ -1,4 +1,4 @@
-package com.yangyinetwork;
+package com.yangyinetwork.server;
 
 import java.net.Socket;
 

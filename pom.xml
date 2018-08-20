@@ -67,7 +67,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.yangyinetwork.App</mainClass>
+              <mainClass>com.yangyinetwork.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
